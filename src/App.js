@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import styles from "./App.module.scss";
 import { GlobalContext } from "./context/GlobalContext";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
@@ -61,21 +61,21 @@ const App = () => {
   };
 
   return (
-    <Router>
-      <Link to="/">Home</Link>
-      <Link to="/cart">Cart</Link>
-      <GlobalContext.Provider
-        value={{
-          products,
-          cart,
-          addProductToCart,
-          removeProductFromCart,
-        }}
-      >
-        <Route path="/" exact component={Home} />
-        <Route path="/cart" component={Cart} />
-      </GlobalContext.Provider>
-    </Router>
+    <div className={styles.root}>
+      <Router>
+        <GlobalContext.Provider
+          value={{
+            products,
+            cart,
+            addProductToCart,
+            removeProductFromCart,
+          }}
+        >
+          <Route path="/" exact component={Home} />
+          <Route path="/cart" component={Cart} />
+        </GlobalContext.Provider>
+      </Router>
+    </div>
   );
 };
 
