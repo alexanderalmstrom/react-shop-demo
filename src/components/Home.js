@@ -9,9 +9,7 @@ const Home = () => {
   if (products.loading) return <p>Loading...</p>;
   if (products.error) return <p>Error :(</p>;
 
-  console.log(products);
-
-  const allProducts = products?.data?.allProducts.data;
+  const allProducts = products?.data?.allProducts?.data;
 
   return (
     <Layout>

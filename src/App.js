@@ -1,25 +1,13 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { PRODUCTS_QUERY } from "./graphql/products";
 import { GlobalContext } from "./context/GlobalContext";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
 
-const PRODUCTS_QUERY = gql`
-  query AllProducts {
-    allProducts {
-      data {
-        _id
-        name
-        price
-      }
-    }
-  }
-`;
-
 const App = () => {
-  const { loading, error, data } = useQuery(PRODUCTS_QUERY);
-
+  const products = useQuery(PRODUCTS_QUERY);
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
@@ -73,9 +61,7 @@ const App = () => {
       <GlobalContext.Provider
         value={{
           products: {
-            loading,
-            error,
-            data,
+            ...products,
           },
           cart,
           addProductToCart,
