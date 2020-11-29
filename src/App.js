@@ -12,7 +12,7 @@ const App = () => {
     { id: 4, name: "Sneakers", price: 999.95 },
   ];
   const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart") || [])
+    JSON.parse(localStorage.getItem("cart")) || []
   );
 
   const addProductToCart = (product) => {
