@@ -25,12 +25,12 @@ const App = () => {
     if (cartItemIndex < 0) {
       updatedCart.push({ ...product, quantity: 1 });
     } else {
-      const addedProduct = {
+      const updatedProduct = {
         ...updatedCart[cartItemIndex],
       };
 
-      addedProduct.quantity++;
-      updatedCart[cartItemIndex] = addedProduct;
+      updatedProduct.quantity++;
+      updatedCart[cartItemIndex] = updatedProduct;
     }
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -43,16 +43,16 @@ const App = () => {
     const cartItemIndex = updatedCart.findIndex(
       (cartItem) => cartItem.id === id
     );
-    const removedProduct = {
+    const updatedProduct = {
       ...updatedCart[cartItemIndex],
     };
 
-    removedProduct.quantity--;
+    updatedProduct.quantity--;
 
-    if (removedProduct.quantity <= 0) {
+    if (updatedProduct.quantity <= 0) {
       updatedCart.splice(cartItemIndex, 1);
     } else {
-      updatedCart[cartItemIndex] = removedProduct;
+      updatedCart[cartItemIndex] = updatedProduct;
     }
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
