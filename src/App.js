@@ -1,16 +1,25 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { useQuery, gql } from "@apollo/client";
 import { GlobalContext } from "./context/GlobalContext";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
 
+const PRODUCTS_QUERY = gql`
+  query AllProducts {
+    allProducts {
+      data {
+        _id
+        name
+        price
+      }
+    }
+  }
+`;
+
 const App = () => {
-  const products = [
-    { id: 1, name: "Gaming mouse", price: 499.95 },
-    { id: 2, name: "Harry potter", price: 399.95 },
-    { id: 3, name: "T-shirt", price: 249.95 },
-    { id: 4, name: "Sneakers", price: 999.95 },
-  ];
+  const { loading, error, data } = useQuery(PRODUCTS_QUERY);
+
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
@@ -18,7 +27,7 @@ const App = () => {
   const addProductToCart = (product) => {
     const updatedCart = [...cart];
     const cartItemIndex = updatedCart.findIndex(
-      (cartItem) => cartItem.id === product.id
+      (cartItem) => cartItem._id === product._id
     );
 
     if (cartItemIndex < 0) {
@@ -40,7 +49,7 @@ const App = () => {
   const removeProductFromCart = (id) => {
     const updatedCart = [...cart];
     const cartItemIndex = updatedCart.findIndex(
-      (cartItem) => cartItem.id === id
+      (cartItem) => cartItem._id === id
     );
     const updatedProduct = {
       ...updatedCart[cartItemIndex],
@@ -63,7 +72,11 @@ const App = () => {
     <Router>
       <GlobalContext.Provider
         value={{
-          products,
+          products: {
+            loading,
+            error,
+            data,
+          },
           cart,
           addProductToCart,
           removeProductFromCart,

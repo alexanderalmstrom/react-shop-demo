@@ -15,11 +15,11 @@ const Cart = () => {
             Math.round(product.price * product.quantity * 100) / 100;
 
           return (
-            <div key={product.id}>
+            <div key={product._id}>
               <h2>{product.name}</h2>
               <p>{price} SEK</p>
               <p>QTY: {product.quantity}</p>
-              <button onClick={() => removeProductFromCart(product.id)}>
+              <button onClick={() => removeProductFromCart(product._id)}>
                 Remove
               </button>
             </div>
