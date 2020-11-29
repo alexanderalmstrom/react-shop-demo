@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { GlobalContext } from "./context/GlobalContext";
 import Home from "./components/Home";
@@ -8,12 +8,14 @@ import "./App.css";
 
 const App = () => {
   const products = [
-    { id: 1, name: "Gaming mouse", price: 499.9 },
-    { id: 2, name: "Harry potter", price: 399.9 },
-    { id: 3, name: "T-shirt", price: 249.9 },
-    { id: 4, name: "Sneakers", price: 999.9 },
+    { id: 1, name: "Gaming mouse", price: 499.95 },
+    { id: 2, name: "Harry potter", price: 399.95 },
+    { id: 3, name: "T-shirt", price: 249.95 },
+    { id: 4, name: "Sneakers", price: 999.95 },
   ];
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart") || [])
+  );
 
   const addProductToCart = (product) => {
     const updatedCart = [...cart];
@@ -32,6 +34,8 @@ const App = () => {
       updatedCart[addedProductIndex] = addedProduct;
     }
 
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
     setCart(updatedCart);
   };
 
@@ -46,12 +50,10 @@ const App = () => {
 
     updatedCart.splice(removedProduct, 1);
 
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
     setCart(updatedCart);
   };
-
-  useEffect(() => {
-    console.log("cart: ", cart);
-  }, [cart]);
 
   return (
     <Router>
