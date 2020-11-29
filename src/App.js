@@ -47,7 +47,13 @@ const App = () => {
       ...updatedCart[cartItemIndex],
     };
 
-    updatedCart.splice(removedProduct, 1);
+    removedProduct.quantity--;
+
+    if (removedProduct.quantity <= 0) {
+      updatedCart.splice(cartItemIndex, 1);
+    } else {
+      updatedCart[cartItemIndex] = removedProduct;
+    }
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
