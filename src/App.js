@@ -18,19 +18,19 @@ const App = () => {
 
   const addProductToCart = (product) => {
     const updatedCart = [...cart];
-    const addedProductIndex = updatedCart.findIndex(
+    const cartItemIndex = updatedCart.findIndex(
       (cartItem) => cartItem.id === product.id
     );
 
-    if (addedProductIndex < 0) {
+    if (cartItemIndex < 0) {
       updatedCart.push({ ...product, quantity: 1 });
     } else {
       const addedProduct = {
-        ...updatedCart[addedProductIndex],
+        ...updatedCart[cartItemIndex],
       };
 
       addedProduct.quantity++;
-      updatedCart[addedProductIndex] = addedProduct;
+      updatedCart[cartItemIndex] = addedProduct;
     }
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -40,11 +40,11 @@ const App = () => {
 
   const removeProductFromCart = (id) => {
     const updatedCart = [...cart];
-    const removedProductIndex = updatedCart.findIndex(
+    const cartItemIndex = updatedCart.findIndex(
       (cartItem) => cartItem.id === id
     );
     const removedProduct = {
-      ...updatedCart[removedProductIndex],
+      ...updatedCart[cartItemIndex],
     };
 
     updatedCart.splice(removedProduct, 1);
