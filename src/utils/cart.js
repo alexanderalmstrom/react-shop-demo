@@ -1,10 +1,4 @@
-export const getCartFromStorage = () => {
-  return JSON.parse(localStorage.getItem("cart")) || [];
-};
-
-export const setCartToStorage = (cart) => {
-  localStorage.setItem("cart", JSON.stringify(cart));
-};
+import { setStorage } from "./helpers";
 
 export const addProductToCart = (product, state) => {
   const cart = [...state.cart];
@@ -21,7 +15,7 @@ export const addProductToCart = (product, state) => {
     cart[cartIndex] = updatedProduct;
   }
 
-  setCartToStorage(cart);
+  setStorage("cart", cart);
 
   return { ...state, cart };
 };
@@ -41,7 +35,7 @@ export const removeProductFromCart = (id, state) => {
     cart[cartIndex] = updatedProduct;
   }
 
-  setCartToStorage(cart);
+  setStorage("cart", cart);
 
   return { ...state, cart };
 };

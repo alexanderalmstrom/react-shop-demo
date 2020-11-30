@@ -4,14 +4,14 @@ import { useQuery } from "@apollo/client";
 import { PRODUCTS_QUERY } from "./graphql/products";
 import { GlobalContext } from "./context/GlobalContext";
 import { cartReducer } from "./reducers/cart";
-import { getCartFromStorage } from "./utils/cart";
+import { getStorage } from "./utils/helpers";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
 
 const App = () => {
   const products = useQuery(PRODUCTS_QUERY);
   const [{ cart }, dispatch] = useReducer(cartReducer, {
-    cart: getCartFromStorage(),
+    cart: getStorage("cart"),
   });
 
   const addProductToCart = (product) => {
