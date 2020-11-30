@@ -6,6 +6,8 @@
   margin-left: auto;
   margin-right: auto;
   display: grid;
+  height: 5rem;
   grid-template-columns: auto 1fr;
   justify-items: end;
+  align-items: center;
 }
