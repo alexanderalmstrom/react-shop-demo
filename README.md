@@ -1,6 +1,6 @@
 # React Shop Demo
 
-This project is created with Create React App. It uses Apollo, GraphQL and Fauna.
+This project was created with Create React App. It uses React, Apollo, GraphQL and Fauna.
 
 Demo: [https://react-shop-demo.vercel.app/](https://react-shop-demo.vercel.app/)
 
