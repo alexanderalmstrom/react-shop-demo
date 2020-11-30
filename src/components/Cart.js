@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styles from "./Cart.module.scss";
 import { GlobalContext } from "../context/GlobalContext";
 import Layout from "./Layout";
+import { roundPrice } from "../utils/helpers";
 
 const Cart = () => {
   const { cart, removeProductFromCart } = useContext(GlobalContext);
@@ -10,21 +11,24 @@ const Cart = () => {
     <Layout>
       <div className={styles.root}>
         <h1>Cart</h1>
-        {cart.map((product) => {
-          const price =
-            Math.round(product.price * product.quantity * 100) / 100;
+        {cart.length < 1 ? (
+          <p>No products in cart :(</p>
+        ) : (
+          cart.map((product) => {
+            const price = roundPrice(product.price * product.quantity);
 
-          return (
-            <div key={product._id}>
-              <h2>{product.name}</h2>
-              <p>{price} SEK</p>
-              <p>QTY: {product.quantity}</p>
-              <button onClick={() => removeProductFromCart(product._id)}>
-                Remove
-              </button>
-            </div>
-          );
-        })}
+            return (
+              <div key={product._id}>
+                <h2>{product.name}</h2>
+                <p>{price} SEK</p>
+                <p>QTY: {product.quantity}</p>
+                <button onClick={() => removeProductFromCart(product._id)}>
+                  Remove
+                </button>
+              </div>
+            );
+          })
+        )}
       </div>
     </Layout>
   );
