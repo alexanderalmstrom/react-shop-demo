@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import styles from "./Home.module.scss";
-import { GlobalContext } from "../context/GlobalContext";
+import { CartContext } from "../context/CartContext";
 import Layout from "./Layout";
 
 const Home = () => {
-  const { products, addProductToCart } = useContext(GlobalContext);
+  const { products, addProductToCart } = useContext(CartContext);
 
   if (products.loading) return <p>Loading...</p>;
   if (products.error) return <p>Error :(</p>;

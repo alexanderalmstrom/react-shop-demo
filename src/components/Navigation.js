@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navigation.module.scss";
+import { CartContext } from "../context/CartContext";
 
-const Navigation = ({ cart }) => {
+const Navigation = () => {
+  const { cart } = useContext(CartContext);
+
   return (
     <nav className={styles.root}>
       <Link to="/cart">

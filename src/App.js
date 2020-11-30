@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { PRODUCTS_QUERY } from "./graphql/products";
-import { GlobalContext } from "./context/GlobalContext";
+import { CartContext } from "./context/CartContext";
 import { cartReducer } from "./reducers/cart";
 import { getStorage } from "./utils/helpers";
 import Home from "./components/Home";
@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <Router>
-      <GlobalContext.Provider
+      <CartContext.Provider
         value={{
           products,
           cart,
@@ -34,7 +34,7 @@ const App = () => {
       >
         <Route path="/" exact component={Home} />
         <Route path="/cart" component={Cart} />
-      </GlobalContext.Provider>
+      </CartContext.Provider>
     </Router>
   );
 };

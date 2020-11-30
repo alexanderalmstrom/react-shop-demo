@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import styles from "./Cart.module.scss";
-import { GlobalContext } from "../context/GlobalContext";
+import { CartContext } from "../context/CartContext";
 import Layout from "./Layout";
 import { roundPrice } from "../utils/helpers";
 
 const Cart = () => {
-  const { cart, removeProductFromCart } = useContext(GlobalContext);
+  const { cart, removeProductFromCart } = useContext(CartContext);
 
   return (
     <Layout>
