@@ -1,32 +1,17 @@
-import { useContext } from "react";
 import styles from "./Home.module.scss";
-import { CartContext } from "../context/CartContext";
+import { useQuery } from "@apollo/client";
+import { PRODUCTS_QUERY } from "../graphql/products";
 import Layout from "./Layout";
+import ProductList from "./ProductList";
 
 const Home = () => {
-  const { products, addProductToCart } = useContext(CartContext);
-
-  if (products.loading) return <p>Loading...</p>;
-  if (products.error) return <p>Error :(</p>;
-
-  const allProducts = products?.data?.allProducts?.data;
+  const products = useQuery(PRODUCTS_QUERY);
 
   return (
     <Layout>
       <div className={styles.root}>
         <h1>Home</h1>
-        {allProducts &&
-          allProducts.map((product) => {
-            return (
-              <div key={product._id}>
-                <h2>{product.name}</h2>
-                <p>{product.price} SEK</p>
-                <button onClick={() => addProductToCart(product)}>
-                  Add to cart
-                </button>
-              </div>
-            );
-          })}
+        <ProductList products={products} />
       </div>
     </Layout>
   );

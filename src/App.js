@@ -1,7 +1,5 @@
 import { useReducer } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { PRODUCTS_QUERY } from "./graphql/products";
 import { CartContext } from "./context/CartContext";
 import { cartReducer } from "./reducers/cart";
 import { getStorage } from "./utils/helpers";
@@ -9,7 +7,6 @@ import Home from "./components/Home";
 import Cart from "./components/Cart";
 
 const App = () => {
-  const products = useQuery(PRODUCTS_QUERY);
   const [{ cart }, dispatch] = useReducer(cartReducer, {
     cart: getStorage("cart"),
   });
@@ -26,7 +23,6 @@ const App = () => {
     <Router>
       <CartContext.Provider
         value={{
-          products,
           cart,
           addProductToCart,
           removeProductFromCart,
