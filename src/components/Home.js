@@ -20,7 +20,7 @@ const Home = () => {
             return (
               <div key={product._id}>
                 <h2>{product.name}</h2>
-                <p>{product.price}</p>
+                <p>{product.price} SEK</p>
                 <button onClick={() => addProductToCart(product)}>
                   Add to cart
                 </button>
