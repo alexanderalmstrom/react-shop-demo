@@ -1,4 +1,4 @@
-import { useQuery, useApolloClient } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import styles from "./Home.module.scss";
 import { PRODUCTS_QUERY } from "../graphql/products";
 import Layout from "./Layout";
