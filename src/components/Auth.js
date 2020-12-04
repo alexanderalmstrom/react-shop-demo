@@ -13,6 +13,7 @@ const Auth = () => {
       loginUser(data: { email: $email, password: $password }) {
         token
         user {
+          _id
           name
           email
           role
@@ -72,6 +73,7 @@ const Auth = () => {
               console.error(err);
             }
           }}
+          disabled={email.length < 1 || password.length < 1}
         >
           Login
         </button>
