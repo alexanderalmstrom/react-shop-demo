@@ -5,13 +5,13 @@ import Layout from "./Layout";
 import ProductList from "./ProductList";
 
 const Home = () => {
-  const { loading, error, data } = useQuery(PRODUCTS_QUERY);
+  const { loading, error, data: products } = useQuery(PRODUCTS_QUERY);
 
   return (
     <Layout>
       <div className={styles.root}>
         <ProductList
-          products={data?.allProducts?.data}
+          products={products?.allProducts?.data}
           loading={loading}
           error={error}
         />

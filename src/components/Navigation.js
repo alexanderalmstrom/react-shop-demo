@@ -8,7 +8,10 @@ const Navigation = () => {
 
   return (
     <nav className={styles.root}>
-      <Link to="/cart" className={styles.cart}>
+      <Link to="/users" className={styles.link}>
+        Users
+      </Link>
+      <Link to="/cart" className={styles.link}>
         Cart (
         {cart.reduce((count, item) => {
           return count + item.quantity;

@@ -9,9 +9,11 @@ import {
 import { persistCache, LocalStorageWrapper } from "apollo3-cache-persist";
 import { CartContext } from "./context/CartContext";
 import { cartReducer } from "./reducers/cart";
-import { getStorage } from "./utils/helpers";
+import { getStorage } from "./lib/storage";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
+import Auth from "./components/Auth";
+import Users from "./components/Users";
 
 const App = () => {
   const [client, setClient] = useState(undefined);
@@ -63,6 +65,8 @@ const App = () => {
         >
           <Route path="/" exact component={Home} />
           <Route path="/cart" component={Cart} />
+          <Route path="/auth" component={Auth} />
+          <Route path="/users" component={Users} />
         </CartContext.Provider>
       </Router>
     </ApolloProvider>

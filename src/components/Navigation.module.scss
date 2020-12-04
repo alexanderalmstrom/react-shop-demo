@@ -1,6 +1,9 @@
 .root {
+  display: flex;
 }
 
-.cart {
+.link {
+  display: inline-flex;
+  margin-left: 1rem;
   text-decoration: none;
 }
