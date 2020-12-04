@@ -1,4 +1,4 @@
-import { addProductToCart, removeProductFromCart } from "../utils/cart";
+import { addProductToCart, removeProductFromCart } from "../lib/cart";
 
 export const cartReducer = (state, action) => {
   switch (action.type) {

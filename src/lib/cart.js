@@ -1,4 +1,4 @@
-import { setStorage } from "./helpers";
+import { setStorage } from "./storage";
 
 export const addProductToCart = (product, state) => {
   const cart = [...state.cart];
