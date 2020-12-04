@@ -18,6 +18,9 @@ const Navigation = () => {
         }, 0)}
         )
       </Link>
+      <Link to="/auth" className={styles.link}>
+        Login
+      </Link>
     </nav>
   );
 };
