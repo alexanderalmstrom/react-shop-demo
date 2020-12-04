@@ -41,20 +41,26 @@ const Auth = () => {
   return (
     <Layout>
       <form method="post" className={styles.root}>
-        <h1>Login</h1>
+        <h1 className={styles.heading}>Login</h1>
         <input
-          type="text"
-          name="username"
+          className={styles.input}
+          type="email"
+          name="email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          placeholder="Email"
         />
         <input
-          type="text"
+          className={styles.input}
+          type="password"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+          placeholder="Password"
         />
         <button
+          className={styles.submit}
+          type="submit"
           onClick={async (e) => {
             e.preventDefault();
 
@@ -70,7 +76,11 @@ const Auth = () => {
           Login
         </button>
         {loading && <p>Loading...</p>}
-        {message && <pre>{JSON.stringify(message, null, 2)}</pre>}
+        {message && (
+          <pre className={styles.message}>
+            {JSON.stringify(message, null, 2)}
+          </pre>
+        )}
       </form>
     </Layout>
   );

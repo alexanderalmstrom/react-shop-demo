@@ -7,6 +7,7 @@ const Users = () => {
   return (
     <Layout>
       <div className={styles.root}>
+        <h1>Users</h1>
         <UserList />
       </div>
     </Layout>

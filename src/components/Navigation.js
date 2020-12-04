@@ -8,6 +8,9 @@ const Navigation = () => {
 
   return (
     <nav className={styles.root}>
+      <Link to="/auth" className={styles.link}>
+        Login
+      </Link>
       <Link to="/users" className={styles.link}>
         Users
       </Link>
@@ -17,9 +20,6 @@ const Navigation = () => {
           return count + item.quantity;
         }, 0)}
         )
-      </Link>
-      <Link to="/auth" className={styles.link}>
-        Login
       </Link>
     </nav>
   );
