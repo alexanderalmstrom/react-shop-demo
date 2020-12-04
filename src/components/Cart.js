@@ -12,7 +12,7 @@ const Cart = () => {
       <div className={styles.root}>
         <h1>Cart</h1>
         {cart.length < 1 ? (
-          <p>No products in cart :(</p>
+          <p>No products in cart.</p>
         ) : (
           cart.map((product) => {
             const price = roundPrice(product.price * product.quantity);

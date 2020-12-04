@@ -1,8 +1,11 @@
 .root {
+  position: sticky;
+  top: 0;
+  width: 100%;
 }
 
 .container {
-  max-width: 75em;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   display: grid;
@@ -10,4 +13,10 @@
   grid-template-columns: auto 1fr;
   justify-items: end;
   align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.logo {
+  text-decoration: none;
 }

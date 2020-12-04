@@ -10,7 +10,6 @@ const Home = () => {
   return (
     <Layout>
       <div className={styles.root}>
-        <h1>Home</h1>
         <ProductList
           products={data?.allProducts?.data}
           loading={loading}

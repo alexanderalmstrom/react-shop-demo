@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <header className={styles.root}>
       <div className={styles.container}>
-        <Link to="/">React Shop Demo</Link>
+        <Link to="/" className={styles.logo}>
+          React Shop Demo
+        </Link>
         <Navigation />
       </div>
     </header>
