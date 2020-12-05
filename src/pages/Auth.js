@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import styles from "./Auth.module.scss";
-import Layout from "./Layout";
+import Layout from "../components/Layout";
 
 const Auth = () => {
   const [email, setEmail] = useState("");

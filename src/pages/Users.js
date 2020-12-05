@@ -1,5 +1,5 @@
-import Layout from "./Layout";
-import UserList from "./UserList";
+import Layout from "../components/Layout";
+import UserList from "../components/UserList";
 
 import styles from "./Users.module.scss";
 

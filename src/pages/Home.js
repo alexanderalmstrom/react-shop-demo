@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import styles from "./Home.module.scss";
 import { PRODUCTS_QUERY } from "../graphql/products";
-import Layout from "./Layout";
-import ProductList from "./ProductList";
+import Layout from "../components/Layout";
+import ProductList from "../components/ProductList";
 
 const Home = () => {
   const { loading, error, data: products } = useQuery(PRODUCTS_QUERY);

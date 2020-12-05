@@ -10,10 +10,10 @@ import { persistCache, LocalStorageWrapper } from "apollo3-cache-persist";
 import { CartContext } from "./context/CartContext";
 import { cartReducer } from "./reducers/cart";
 import { getStorage } from "./lib/storage";
-import Home from "./components/Home";
-import Cart from "./components/Cart";
-import Auth from "./components/Auth";
-import Users from "./components/Users";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import Auth from "./pages/Auth";
+import Users from "./pages/Users";
 
 const App = () => {
   const [client, setClient] = useState(undefined);
