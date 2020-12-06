@@ -8,7 +8,7 @@ const Navigation = () => {
 
   return (
     <nav className={styles.root}>
-      <Link to="/auth" className={styles.link}>
+      <Link to="/login" className={styles.link}>
         Login
       </Link>
       <Link to="/users" className={styles.link}>

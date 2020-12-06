@@ -1,43 +1,54 @@
 import { useEffect, useState } from "react";
-import { gql, useMutation } from "@apollo/client";
-import styles from "./Auth.module.scss";
+import { useHistory } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import styles from "./Login.module.scss";
 import Layout from "../components/Layout";
+import { LOGIN_USER } from "../graphql/users";
+import { isLoggedIn, getRoute, setToken, setUser } from "../lib/auth";
 
 const Auth = () => {
+  const history = useHistory();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const [loginUser, { loading, error, data = {} }] = useMutation(gql`
-    mutation LoginUser($email: String!, $password: String!) {
-      loginUser(data: { email: $email, password: $password }) {
-        token
-        user {
-          _id
-          name
-          email
-          role
-        }
-      }
+  const [loginUser, { loading, error, data = {} }] = useMutation(LOGIN_USER);
+
+  if (isLoggedIn()) history.push(getRoute());
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setMessage("");
+
+    try {
+      await loginUser({
+        variables: {
+          email,
+          password,
+        },
+      });
+
+      setMessage("Login successful!");
+    } catch (err) {
+      console.error(err);
+
+      setMessage("Login failed.");
     }
-  `);
+  };
 
   useEffect(() => {
     if (data.loginUser) {
-      console.log(data.loginUser);
+      const { token, user } = data.loginUser;
 
       setEmail("");
       setPassword("");
 
-      setMessage(data.loginUser);
+      setToken(token);
+      setUser(user);
     }
   }, [data.loginUser]);
-
-  useEffect(() => {
-    if (error) {
-      setMessage(error);
-    }
-  }, [error]);
 
   return (
     <Layout>
@@ -62,27 +73,14 @@ const Auth = () => {
         <button
           className={styles.submit}
           type="submit"
-          onClick={async (e) => {
-            e.preventDefault();
-
-            setMessage("");
-
-            try {
-              await loginUser({ variables: { email, password } });
-            } catch (err) {
-              console.error(err);
-            }
-          }}
+          onClick={handleSubmit}
           disabled={email.length < 1 || password.length < 1}
         >
           Login
         </button>
         {loading && <p>Loading...</p>}
-        {message && (
-          <pre className={styles.message}>
-            {JSON.stringify(message, null, 2)}
-          </pre>
-        )}
+        {message && <p>{message}</p>}
+        {error && <p>{JSON.stringify(error, null, 2)}</p>}
       </form>
     </Layout>
   );

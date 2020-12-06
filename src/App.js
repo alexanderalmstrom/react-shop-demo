@@ -12,8 +12,10 @@ import { cartReducer } from "./reducers/cart";
 import { getStorage } from "./lib/storage";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
-import Auth from "./pages/Auth";
+import Login from "./pages/Login";
 import Users from "./pages/Users";
+import { getToken } from "./lib/auth";
+import User from "./pages/User";
 
 const App = () => {
   const [client, setClient] = useState(undefined);
@@ -31,11 +33,12 @@ const App = () => {
 
   useEffect(() => {
     const cache = new InMemoryCache();
+    const token = getToken() || process.env.REACT_APP_FAUNA_SECRET;
 
     const link = createHttpLink({
       uri: "https://graphql.fauna.com/graphql",
       headers: {
-        authorization: `Bearer ${process.env.REACT_APP_FAUNA_SECRET}`,
+        authorization: `Bearer ${token}`,
       },
     });
 
@@ -65,7 +68,8 @@ const App = () => {
         >
           <Route path="/" exact component={Home} />
           <Route path="/cart" component={Cart} />
-          <Route path="/auth" component={Auth} />
+          <Route path="/login" component={Login} />
+          <Route path="/user/:name" component={User} />
           <Route path="/users" component={Users} />
         </CartContext.Provider>
       </Router>
